@@ -1,21 +1,21 @@
-export const getTodos = () => fetch("http://localhost:4000/").then(res => res.json())
+export const getUsuarios = () => fetch("http://localhost:4000/").then(res => res.json())
 
-export const createTodo = (todo) => fetch("http://localhost:4000/create", {
+export const createUsuario = (usuario) => fetch("http://localhost:4000/crear", {
   method: "POST",
   headers: {
     "Accept": "application/json",
     "Content-Type": "application/json"
   },
-  body: JSON.stringify(todo)
+  body: JSON.stringify(usuario)
 })  
 
-export const updateTodo = (todo, id) => fetch(`http://localhost:4000/${id}`, {
+export const updateUsuario = (usuario, id) => fetch(`http://localhost:4000/${id}`, {
   method: "POST",
   headers: {
     "Accept": "application/json",
     "Content-Type": "application/json"
   },
-  body: JSON.stringify(todo)
+  body: JSON.stringify(usuario)
 })  
 
-export const getTodo = (id) => fetch(`http://localhost:4000/${id}`).then(res => res.json())
+export const getUsuario = (id) => fetch(`http://localhost:4000/${id}`).then(res => res.json())

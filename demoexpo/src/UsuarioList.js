@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
-import { getTodos } from "./api"
+import { getUsuarios } from "./api"
 
-export const TodoList = () => {
+export const UsuarioList = () => {
   const [items, setItems] = useState([])
 
   useEffect(() => {
     const fetchItems = async () => {
-      const todos = await getTodos()
-      setItems(todos)
+      const usuarios = await getUsuarios()
+      setItems(usuarios)
     }
     fetchItems()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -16,24 +16,25 @@ export const TodoList = () => {
 
   return (
     <div className="container">
-      <div className="mt-3">
-        <h3>Todo List</h3>
+      <div className="mt-5">
+        <h3>Lista de usuarios rexistrados</h3>
         <table className="table table-striped mt-3">
           <thead>
             <tr>
-              <th>Text</th>
-              <th>Action</th>
+              <th>Nome</th>
+              <th>Apelido</th>
+              <th>Ano de nacemento</th>
             </tr>
           </thead>
           <tbody>
             {
-              items.map(todo => (
-                <tr key={todo._id}>
+              items.map(usuario => (
+                <tr key={usuario._id}>
                   <td>
-                    {todo.text}
+                    {usuario.text}
                   </td>
                   <td>
-                    <Link to={`/edit/${todo._id}`}>Edit</Link>
+                    <Link to={`/edit/${usuario._id}`}>Editar</Link>
                   </td>
                 </tr>
               ))

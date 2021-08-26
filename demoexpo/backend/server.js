@@ -1,14 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const Todo = require("./models/Todo");
+const Usuario = require("./models/Usuario");
 
 mongoose.connect("mongodb://localhost/demoexpo", { 
     useUnifiedTopology: true,
     useNewUrlParser: true });
 
 mongoose.connection.once("open", () => {
-  console.log("Mongodb connection established successfully");
+  console.log("Conexión establecida con MongoDB");
 });
 
 const PORT = 4000;
@@ -19,21 +19,21 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  Todo.find((err, todos) => {
+  Usuario.find((err, usuarios) => {
     if (err) {
       console.log(err);
     } else {
-      res.json(todos);
+      res.json(usuarios);
     }
   });
 });
 
-app.post("/create", (req, res) => {
-  const todo = new Todo(req.body);
-  todo
+app.post("/crear", (req, res) => {
+  const usuario = new Usuario(req.body);
+  usuario
     .save()
-    .then((todo) => {
-      res.json(todo);
+    .then((usuario) => {
+      res.json(usuario);
     })
     .catch((err) => {
       res.status(500).send(err.message);
@@ -42,23 +42,23 @@ app.post("/create", (req, res) => {
 
 app.get("/:id", (req, res) => {
   const id = req.params.id;
-  Todo.findById(id, (err, todo) => {
-    res.json(todo);
+  Usuario.findById(id, (err, usuario) => {
+    res.json(usuario);
   });
 });
 
 app.post("/:id", (req, res) => {
   const id = req.params.id;
-  Todo.findById(id, (err, todo) => {
-    if (!todo) {
-      res.status(404).send("Todo not found");
+  Usuario.findById(id, (err, usuario) => {
+    if (!usuario) {
+      res.status(404).send("Usuario non atopado");
     } else {
-      todo.text = req.body.text;
+      usuario.text = req.body.text;
 
-      todo
+      usuario
         .save()
-        .then((todo) => {
-          res.json(todo);
+        .then((usuario) => {
+          res.json(usuario);
         })
         .catch((err) => res.status(500).send(err.message));
     }

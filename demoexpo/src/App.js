@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch, Link } from 'react-router-dom'
-import { TodoList } from './TodoList'
-import { CreateTodo } from './CreateTodo'
-import { EditTodo } from './EditTodo'
+import { UsuarioList } from './UsuarioList'
+import { CreateUsuario } from './CreateUsuario'
+import { EditUsuario } from './EditUsuario'
 
 function App() {
   return (
@@ -10,17 +10,17 @@ function App() {
       <nav className="navbar bg-light navbar-expand-lg navbar-light">
         <ul className="navbar-nav mr-auto">
           <li className="navbar-item">
-            <Link to="/" className="nav-link">Todos</Link>
+            <Link to="/" className="nav-link">Usuarios</Link>
           </li>
           <li className="navbar-item">
-            <Link to="/create" className="nav-link">Create Todo</Link>
+            <Link to="/crear" className="nav-link">Rexistrar usuario</Link>
           </li>
         </ul>
       </nav>
     <Switch>
-      <Route exact path="/" component={TodoList}/>
-      <Route path="/edit/:id" component={EditTodo}/>
-      <Route path="/create" component={CreateTodo}/>
+      <Route exact path="/" component={UsuarioList}/>
+      <Route path="/editar/:id" component={EditUsuario}/>
+      <Route path="/crear" component={CreateUsuario}/>
     </Switch>
     </div>
   );
